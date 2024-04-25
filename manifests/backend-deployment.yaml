@@ -13,6 +13,19 @@ spec:
       labels:
         app: sassy-backend
     spec:
+      initContainers:
+      - name: setup-sassy-backend
+        # ideally this wouldn't need to be the same image as the main application,
+        # but it's got everything we need and easy enough to just re-use
+        image: localhost:5001/sassy-backend:latest
+        command:
+        - /bin/sh
+        - -c
+        - |
+          # set up the migrations in the database
+          python manage.py migrate
+          # we'll also set up a superuser with fake creds for local k3s usage
+          DJANGO_SUPERUSER_PASSWORD=supersecretpassword DJANGO_SUPERUSER_USERNAME=admin DJANGO_SUPERUSER_EMAIL=admin@example.com python manage.py createsuperuser --noinput
       containers:
       - name: sassy-backend
         # we're using a locally running container registry, so that's why "localhost:5001"

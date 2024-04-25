@@ -77,9 +77,9 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydatabase",
-        "USER": "myuser",
-        "PASSWORD": "mypassword",
+        "NAME": "postgres",
+        "USER": "prod-user",
+        "PASSWORD": "supersecretproductionpassword",
         # this domain gets resolved inside k8s
         "HOST": "postgres",
         "PORT": "5432",

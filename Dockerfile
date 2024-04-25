@@ -12,4 +12,6 @@ COPY manage.py /app/manage.py
 
 EXPOSE 8000
 
+# be aware that this will swallow exceptions and hide any blowups, so the pod won't
+# restart on errors
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "backend.wsgi:application"]
