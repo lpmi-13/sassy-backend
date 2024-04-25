@@ -1,5 +1,11 @@
 .github
 .git
+
 .env
-*.md
 scripts
+
+*.md
+LICENSE
+
+Dockerfile
+.dockerignore
