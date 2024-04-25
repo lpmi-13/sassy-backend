@@ -27,7 +27,8 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = []
+# we'll split this out into local and production config later
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -72,14 +73,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# doesn't currently matter, since we're just running containers, not actually using them yet
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "mydatabase",
+        "USER": "myuser",
+        "PASSWORD": "mypassword",
+        # this domain gets resolved inside k8s
+        "HOST": "postgres",
+        "PORT": "5432",
     }
 }
 

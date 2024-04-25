@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sassy-backend
+  namespace: sassy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sassy-backend
+  template:
+    metadata:
+      labels:
+        app: sassy-backend
+    spec:
+      containers:
+      - name: sassy-backend
+        # we're using a locally running container registry, so that's why "localhost:5001"
+        # see: start_registry.sh
+        image: localhost:5001/sassy-backend:latest
+        ports:
+        - containerPort: 8000
+        env:
+          - name: DJANGO_DEBUG
+            value: "True"

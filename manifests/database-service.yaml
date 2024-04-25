@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: sassy
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
