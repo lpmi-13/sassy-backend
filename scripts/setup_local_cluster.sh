@@ -7,4 +7,4 @@
 ./scripts/build_container.sh
 
 # and finally set up the k8s deployments
-./scripts/deploy.sh
+./scripts/deploy-local.sh

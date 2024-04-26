@@ -22,12 +22,14 @@ spec:
           # you'll need to delete and recreate the folder for the persistent volume mount
           # eg, /tmp/k3s-sassy-data
             - name: POSTGRES_USER
-              value: prod-user
+              value: $POSTGRES_USER_REPLACE
             - name: POSTGRES_PASSWORD
-              value: supersecretproductionpassword
+              value: $POSTGRES_PASSWORD_REPLACE
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: database-mount
+              # this is needed for EBS, but unclear on whether it also works locally...
+              subPath: postgres
       volumes:
       - name: database-mount
         persistentVolumeClaim:

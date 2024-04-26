@@ -17,22 +17,24 @@ spec:
       - name: setup-sassy-backend
         # ideally this wouldn't need to be the same image as the main application,
         # but it's got everything we need and easy enough to just re-use
-        image: localhost:5001/sassy-backend:latest
+        image: $BACKEND_IMAGE_NAME
         command:
         - /bin/sh
         - -c
         - |
           # set up the migrations in the database
           python manage.py migrate
-          # we'll also set up a superuser with fake creds for local k3s usage
-          DJANGO_SUPERUSER_PASSWORD=supersecretpassword DJANGO_SUPERUSER_USERNAME=admin DJANGO_SUPERUSER_EMAIL=admin@example.com python manage.py createsuperuser --noinput
+          # we don't currently need any superusers, so just skip this for now
+          #DJANGO_SUPERUSER_PASSWORD=$SUPERUSER_PASSWORD_REPLACE DJANGO_SUPERUSER_USERNAME=$SUPERUSER_USERNAME_REPLACE DJANGO_SUPERUSER_EMAIL=admin@example.com python manage.py createsuperuser --noinput
+        envFrom:
+        - configMapRef:
+            name: backend-configmap
       containers:
       - name: sassy-backend
-        # we're using a locally running container registry, so that's why "localhost:5001"
-        # see: start_registry.sh
-        image: localhost:5001/sassy-backend:latest
+        # at some point, we'll wire up Argo so that this gets explicitly updated with a specific tag
+        image: $BACKEND_IMAGE_NAME
         ports:
         - containerPort: 8000
-        env:
-          - name: DJANGO_DEBUG
-            value: "True"
+        envFrom:
+        - configMapRef:
+            name: backend-configmap

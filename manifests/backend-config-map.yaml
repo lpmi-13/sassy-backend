@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-configmap
+  namespace: sassy
+data:
+  # these values are replaced during the deploy script runs
+  DB_HOST: "$DB_HOST_REPLACE"
+  DB_USER: "$DB_USER_REPLACE"
+  DB_PASSWORD: "$DB_PASSWORD_REPLACE"
+  PORT: "$PORT_REPLACE"
+  DJANGO_SECRET_KEY: "$DJANGO_SECRET_KEY_REPLACE"
+  DJANGO_DEBUG: "$DJANGO_DEBUG_REPLACE"
+  ALLOWED_HOSTS: "$ALLOWED_HOSTS_REPLACE"
