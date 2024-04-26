@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 # we'll split this out into local and production config later
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", ["*"])
 
 
 # Application definition
@@ -78,11 +78,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
-        "USER": "prod-user",
-        "PASSWORD": "supersecretproductionpassword",
+        "USER": os.environ.get("DB_USER", "prod-user"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "supersecretproductionpassword"),
         # this domain gets resolved inside k8s
-        "HOST": "postgres",
-        "PORT": "5432",
+        "HOST": os.environ.get("DB_HOST", "postgres"),
+        "PORT": os.environ.get("PORT", "5432"),
     }
 }
 
