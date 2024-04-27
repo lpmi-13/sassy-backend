@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "backend.sassy",
 ]
 
 MIDDLEWARE = [
@@ -73,14 +74,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-# doesn't currently matter, since we're just running containers, not actually using them yet
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": os.environ.get("DB_USER", "prod-user"),
         "PASSWORD": os.environ.get("DB_PASSWORD", "supersecretproductionpassword"),
-        # this domain gets resolved inside k8s
         "HOST": os.environ.get("DB_HOST", "postgres"),
         "PORT": os.environ.get("PORT", "5432"),
     }
