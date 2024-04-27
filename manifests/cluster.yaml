@@ -5,6 +5,9 @@ metadata:
   name: sassy
   region: eu-west-1
 
+iam:
+  withOIDC: true
+
 nodeGroups:
   - name: ng-1
     instanceType: t3.small
