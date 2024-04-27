@@ -9,6 +9,7 @@ export POSTGRES_USER_REPLACE=prod-user
 export POSTGRES_PASSWORD_REPLACE=supersecretproductionpassword
 
 export BACKEND_IMAGE_NAME=localhost:5001/sassy-backend
+export BACKEND_DB_SEED_IMAGE_NAME=localhost:5001/sassy-backend-db-seed
 
 # for postgres access
 export SUPERUSER_USERNAME_REPLACE=superadmin
