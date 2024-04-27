@@ -29,6 +29,11 @@ spec:
         envFrom:
         - configMapRef:
             name: backend-configmap
+      - name: db-seed
+        image: $BACKEND_DB_SEED_IMAGE_NAME
+        envFrom:
+        - configMapRef:
+            name: backend-configmap
       containers:
       - name: sassy-backend
         # at some point, we'll wire up Argo so that this gets explicitly updated with a specific tag
