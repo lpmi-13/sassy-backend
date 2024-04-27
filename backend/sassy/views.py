@@ -33,4 +33,4 @@ class SaasViewSet(viewsets.ModelViewSet):
 
     queryset = SassInfo.objects.all().order_by("id")
     serializer_class = SaasSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
