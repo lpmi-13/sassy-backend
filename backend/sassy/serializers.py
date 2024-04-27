@@ -19,4 +19,13 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SaasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SassInfo
-        fields = ["id", "name"]
+        fields = [
+            "id",
+            "name",
+            "employee_number",
+            "founder",
+            "funding",
+            "mau",
+            "type",
+            "revenue",
+        ]
