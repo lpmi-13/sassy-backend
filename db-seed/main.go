@@ -15,6 +15,7 @@ var (
 )
 
 type FakeSaasInfo struct {
+	// shouldn't need ID here...
 	EmployeeNumber uint8 `faker:"boundary_start=100, boundary_end=1000"`
 	Founder        string  `faker:"name"`
 	Funding        uint32 `faker:"boundary_start=1000000, boundary_end=100000000"`
