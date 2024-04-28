@@ -27,6 +27,8 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
+DEVELOPMENT_MODE = os.environ.get("DEVELOPMENT_MODE", "") != "False"
+
 # we'll split this out into local and production config later
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", ["*"])
 
@@ -74,16 +76,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": os.environ.get("DB_USER", "prod-user"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "supersecretproductionpassword"),
-        "HOST": os.environ.get("DB_HOST", "postgres"),
-        "PORT": os.environ.get("PORT", "5432"),
+if DEVELOPMENT_MODE == True:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": os.environ.get("DB_USER", "prod-user"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "supersecretproductionpassword"),
+            "HOST": os.environ.get("DB_HOST", "postgres"),
+            "PORT": os.environ.get("PORT", "5432"),
+        }
+    }
 
 
 # Password validation

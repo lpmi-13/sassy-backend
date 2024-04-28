@@ -11,4 +11,6 @@ data:
   PORT: "$PORT_REPLACE"
   DJANGO_SECRET_KEY: "$DJANGO_SECRET_KEY_REPLACE"
   DJANGO_DEBUG: "$DJANGO_DEBUG_REPLACE"
+  # we don't want to use sqlite in any of the containerized environments
+  DEVELOPMENT_MODE: "False"
   ALLOWED_HOSTS: "$ALLOWED_HOSTS_REPLACE"
