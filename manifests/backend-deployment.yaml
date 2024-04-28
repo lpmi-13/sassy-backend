@@ -22,7 +22,8 @@ spec:
         - /bin/sh
         - -c
         - |
-          # set up the migrations in the database
+          # we run both of these just to make sure that any code updates are reflected in the database schema
+          python manage.py makemigrations
           python manage.py migrate
           # we don't currently need any superusers, so just skip this for now
           #DJANGO_SUPERUSER_PASSWORD=$SUPERUSER_PASSWORD_REPLACE DJANGO_SUPERUSER_USERNAME=$SUPERUSER_USERNAME_REPLACE DJANGO_SUPERUSER_EMAIL=admin@example.com python manage.py createsuperuser --noinput
