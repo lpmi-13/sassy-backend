@@ -59,8 +59,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-        id := database.Create(&saasBiz)
-		fmt.Printf("inserted: %v", id)
+        database.Create(&saasBiz)
 	}
 
 	// for the initcontainer logs
