@@ -2,7 +2,6 @@ from django.db import models
 
 
 class SassInfo(models.Model):
-    id = models.IntegerField(primary_key=True)
     employee_number = models.IntegerField()
     founder = models.CharField(max_length=50)
     funding = models.IntegerField()
