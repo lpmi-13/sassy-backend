@@ -24,6 +24,7 @@ from backend.sassy import views
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"api/saas", views.SaasViewSet)
+router.register(r"api/saas/<int:pk>", views.SaasIndividualViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
