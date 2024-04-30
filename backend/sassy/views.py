@@ -24,7 +24,7 @@ class SaasViewSet(viewsets.ModelViewSet):
 
     queryset = SassInfo.objects.all().order_by("id")
     serializer_class = SaasSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class SaasIndividualViewSet(viewsets.ModelViewSet):
@@ -34,7 +34,7 @@ class SaasIndividualViewSet(viewsets.ModelViewSet):
 
     queryset = SassInfo.objects.all()
     serializer_class = SaasSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def retrieve(self, request, pk=None):
         queryset = self.queryset.get(pk=pk)
