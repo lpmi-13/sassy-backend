@@ -2,6 +2,12 @@
 
 This is the backend for My Totally Serious Saas Business. It's Django REST Framework and sends back very important data that customers will benefit most highly from, even in their home prefectures!
 
+## Architecture
+
+Along with the [sassy-frontend](https://github.com/lpmi-13/sassy-frontend), this forms the API component of https://mytotallyserioussaasbusiness.com.
+
+![architecture diagram](sassy-architecture.png)
+
 ## Running Locally
 
 Because the whole idea is to run this "in production" on EKS, the local runs are going to be via k3s (rather than something simpler like docker-compose).
@@ -43,3 +49,7 @@ curl 10.43.207.232/users/ | jq
   "detail": "Authentication credentials were not provided."
 }
 ```
+
+## Deployments
+
+Updating the code in either the `backend/` folder or the `db-seed/` folders will build the related containers in GitHub actions and push them to ECR for consumption by EKS.
