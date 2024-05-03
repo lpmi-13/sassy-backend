@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - staticassets/**
+      - .github/workflows/upload-static-assets.yaml
 
 jobs:
   deploy:
