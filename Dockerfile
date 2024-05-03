@@ -4,6 +4,9 @@ ARG USER=django
 ARG USER_ID=1000
 ARG GROUP_ID=$USER_ID
 
+RUN groupadd -g $GROUP_ID $USER \
+    && useradd -u $USER_ID -g $GROUP_ID $USER -M
+
 COPY requirements.txt /tmp/requirements.txt
 
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
@@ -15,9 +18,6 @@ COPY backend /app/backend
 COPY manage.py /app/manage.py
 
 EXPOSE 8000
-
-RUN groupadd -g $GROUP_ID $USER \
-    && useradd -u $USER_ID -g $GROUP_ID $USER -M
 
 USER django
 
