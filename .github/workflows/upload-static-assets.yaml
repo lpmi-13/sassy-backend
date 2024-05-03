@@ -39,7 +39,7 @@ jobs:
 
       - name: Upload build artifacts to S3
         run: |
-          aws s3 sync staticassets/ s3://${{ secrets.BUCKET_NAME }}
+          aws s3 sync staticassets/ s3://${{ secrets.BUCKET_NAME }}/staticassets
 
       # this is a blunt instrument, and we should probably just not cache the index.html,
       # but this will work for now
