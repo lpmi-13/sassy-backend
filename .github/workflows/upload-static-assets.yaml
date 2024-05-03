@@ -1,0 +1,40 @@
+name: Deploy static backend assets to S3
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - staticassets/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # we need these for the OIDC authentication to AWS
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Static Assets
+        # we want to hide some stuff for now
+        run: python manage.py collectstatic
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ secrets.REGION }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+
+      - name: Upload build artifacts to S3
+        run: |
+          aws s3 sync staticassets/ s3://${{ secrets.BUCKET_NAME }}
+
+      # this is a blunt instrument, and we should probably just not cache the index.html,
+      # but this will work for now
+      - name: Invalidate the cloudfront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
