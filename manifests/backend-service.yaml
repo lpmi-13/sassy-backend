@@ -10,5 +10,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8000
-  # ClusterIP or LoadBalancer depending on environment
+  # ClusterIP or NodePort depending on environment
   type: $EXPOSED_TYPE
