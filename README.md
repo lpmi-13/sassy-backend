@@ -1,5 +1,7 @@
 # A Sassy Backend
 
+Uses the excellent https://github.com/roperi/YaSaas/
+
 This is the backend for My Totally Serious Saas Business. It's Django REST Framework and sends back very important data that customers will benefit most highly from, even in their home prefectures!
 
 ## Architecture
