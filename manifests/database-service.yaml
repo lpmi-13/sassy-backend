@@ -4,6 +4,10 @@ metadata:
   name: postgres
   namespace: sassy
 spec:
-  clusterIP: None
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
   selector:
     app: postgres

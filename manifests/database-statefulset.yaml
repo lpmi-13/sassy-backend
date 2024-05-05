@@ -30,6 +30,8 @@ spec:
               name: database-mount
               # this is needed for EBS, but unclear on whether it also works locally...
               subPath: postgres
+      # nodeSelector:
+        # hasVolume: boom
       volumes:
       - name: database-mount
         persistentVolumeClaim:
