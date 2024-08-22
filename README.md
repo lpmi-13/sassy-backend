@@ -55,3 +55,5 @@ curl 10.43.207.232/users/ | jq
 ## Deployments
 
 Updating the code in either the `backend/` folder or the `db-seed/` folders will build the related containers in GitHub actions and push them to ECR for consumption by EKS.
+
+You _should_ be able to run the `scripts/deploy-prod.sh` script once you've got `eksctl` installed, but I don't actually remember how I set this up, so caveat emptor.
